@@ -46,12 +46,19 @@ import plotly.colors as colors
 
 
 
+####get rid of untrustworthy expenditure categories####
+
+
+la_df = la_df[(la_df['variable']!="Fostering services (excluding fees and allowances for LA foster carers)")&
+                  (la_df['variable']!="Education of looked after children")&
+                  (la_df['variable']!="Special guardianship support")&
+                  (la_df['variable']!="Fostering services (fees and allowances for LA foster carers)")&
+                  (la_df['variable']!="Short breaks (respite) for looked after disabled children")&
+                  (la_df['variable']!="Children placed with family and friends")]
 
 
 
-
-
-
+la_df.sort_values(by=['variable'])
 
 
 
@@ -951,7 +958,7 @@ def render_page_1_content(tab):
               options=[
                  {'label': la, 'value': la} for la in merged2['variable'].unique()
               ],
-              value=merged2['variable'].unique()[2]
+              value=merged2['variable'].unique()[0]
             ),
             dcc.Graph(id='outsourcing-map',style={'height': '1000px'})])
 
