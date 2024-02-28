@@ -58,7 +58,7 @@ la_df = la_df[(la_df['variable']!="Fostering services (excluding fees and allowa
 
 
 
-la_df.sort_values(by=['variable'])
+la_df = la_df.sort_values(by=['variable'])
 
 
 
