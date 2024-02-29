@@ -576,6 +576,9 @@ outcomes_df = outcomes_df[outcomes_df['LA_Name'].map(outcomes_df['LA_Name'].valu
 
 outcomes_df['percent'] = pd.to_numeric(outcomes_df['percent'], errors='coerce')
 
+outcomes_df = outcomes_df.sort_values(by="LA_Name")
+
+
 
 #####placements quality#####
 
