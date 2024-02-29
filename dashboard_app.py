@@ -1111,6 +1111,7 @@ def render_page_4_content(tab):
             ]),
             html.H6("Research on outsourcing of healthcare"),
                 html.Li(html.A("What is the impact of outsourcing healthcare services on quality of care?", href="https://www.thelancet.com/journals/lanpub/article/PIIS2468-2667(22)00133-5/fulltext?trk=organization_guest_main-feed-card_feed-article-content")),
+                html.Li(html.A("What is the evidence on impact of outsourcing healthcare services?", href="https://www.thelancet.com/journals/lanpub/article/PIIS2468-2667(24)00003-3/fulltext")),
                 html.Li(html.A("Why do NHS commissioners outsource healthcare services?", href="https://www.sciencedirect.com/science/article/pii/S0168851023002269?via%3Dihub")),
             html.H3("Project Information"),
             html.Ul([
