@@ -769,7 +769,9 @@ watermark = html.Div(
 
 
 # Incorporate the watermark into your layout
-app.layout = html.Div([dcc.Location(id="url"), sidebar, content, watermark])
+app.layout = html.Div([dcc.Location(id="url"), sidebar, content,
+                        #watermark
+                        ])
 
 @app.callback(Output("page-content", "children"), [Input("url", "pathname")])
 def render_page_content(pathname):
