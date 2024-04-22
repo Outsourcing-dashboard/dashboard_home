@@ -11,11 +11,11 @@ def render_page(tab_style, tab_selected_style, tabs_styles):
         [
             dcc.Tabs(
                 id="page-3-tabs",
-                value="tab-9",
+                value="tab-10",
                 children=[
                     dcc.Tab(
                         label="Local authority comparison",
-                        value="tab-9",
+                        value="tab-10",
                         style=tab_style,
                         selected_style=tab_selected_style,
                     ),
@@ -37,7 +37,7 @@ def register_callbacks(app, dataframes: DataContainer):
         Output("page-3-tabs-content", "children"), [Input("page-3-tabs", "value")]
     )
     def render_page_3_content(tab):
-        if tab == "tab-9":
+        if tab == "tab-10":
             return html.Div(
                 [
                     html.H1('Compare data for different areas'),

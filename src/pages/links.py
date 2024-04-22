@@ -6,23 +6,23 @@ def render_page(tab_style, tab_selected_style, tabs_styles):
         [
             dcc.Tabs(
                 id="page-4-tabs",
-                value="tab-10",
+                value="tab-11",
                 children=[
                     dcc.Tab(
                         label="Data download",
-                        value="tab-10",
-                        style=tab_style,
-                        selected_style=tab_selected_style,
-                    ),
-                    dcc.Tab(
-                        label="Educational resources",
                         value="tab-11",
                         style=tab_style,
                         selected_style=tab_selected_style,
                     ),
                     dcc.Tab(
-                        label="Contact and feedback",
+                        label="Educational resources",
                         value="tab-12",
+                        style=tab_style,
+                        selected_style=tab_selected_style,
+                    ),
+                    dcc.Tab(
+                        label="Contact and feedback",
+                        value="tab-13",
                         style=tab_style,
                         selected_style=tab_selected_style,
                     ),
@@ -39,7 +39,7 @@ def register_callbacks(app):
         Output("page-4-tabs-content", "children"), [Input("page-4-tabs", "value")]
     )
     def render_page_4_content(tab):
-        if tab == "tab-10":
+        if tab == "tab-11":
             return html.Div(
                 [
                     html.H1("Data Downloads:"),
@@ -91,7 +91,7 @@ def register_callbacks(app):
                     ),
                 ]
             )
-        elif tab == "tab-11":
+        elif tab == "tab-12":
             return html.Div(
                 [
                     html.H1("Links to Resources"),
@@ -196,7 +196,7 @@ def register_callbacks(app):
                     ),
                 ]
             )
-        elif tab == "tab-12":
+        elif tab == "tab-13":
             return html.Div(
                 [
                     html.H3("Meet the team:"),

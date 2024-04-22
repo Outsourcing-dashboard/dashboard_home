@@ -30,6 +30,12 @@ def render_page(tab_style, tab_selected_style, tabs_styles):
                         style=tab_style,
                         selected_style=tab_selected_style,
                     ),
+                    dcc.Tab(
+                        label="Area deprivation and provision",
+                        value="tab-9",
+                        style=tab_style,
+                        selected_style=tab_selected_style,
+                    ),
                 ],
                 style=tabs_styles,
             ),
@@ -42,6 +48,8 @@ def register_callbacks(app, dataframes: DataContainer):
     active_chomes = dataframes.active_chomes
     outcomes_df = dataframes.outcomes_df
     placements_df = dataframes.placements_df
+    exitdata = dataframes.exitdata
+
     variable_options = []
     variable_options2 = []
 
@@ -133,6 +141,40 @@ def register_callbacks(app, dataframes: DataContainer):
                         placeholder="Select a variable",
                     ),
                     dcc.Graph(id="placement_plot"),
+                ]
+            )
+        elif tab == "tab-9":
+            return html.Div(
+                [
+                    html.H1("Area deprivation and children's homes"),
+                    html.H3("Exits or Entries"),
+                    dcc.Dropdown(
+                        id="exit_entry_drop",
+                        options=[
+                            {"label": la, "value": la}
+                            for la in exitdata["leave_join"].unique()
+                        ],
+                        value="Entries",
+                    ),
+                    html.H3("Select a Local Authority"),
+                    dcc.Dropdown(
+                        id="exit-local-authority-dropdown",
+                        options=[
+                            {"label": la, "value": la}
+                            for la in exitdata["Local.authority"].unique()
+                        ],
+                        value="All",
+                    ),
+                    html.H3("Select Number of Homes or Places"),
+                    dcc.Dropdown(
+                        id="exit-homes-or-places-dropdown",
+                        options=[
+                            {"label": hop, "value": hop}
+                            for hop in exitdata["Homes_or_places"].unique()
+                        ],
+                        value=exitdata["Homes_or_places"].unique()[0],
+                    ),
+                    dcc.Graph(id="exits_entries_plot"),
                 ]
             )
 
