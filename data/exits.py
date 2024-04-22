@@ -1,5 +1,4 @@
 import pandas as pd
-import utils
 from utils import csv_path
 
 exitdata = pd.read_csv(
@@ -27,13 +26,13 @@ exitdata["Places"] = pd.to_numeric(exitdata["Places"], errors="coerce")
 exitdata["childrens_homes"] = 1
 
 exitdata = (
-    exitdata.groupby(["Sector", "year", "leave_join", "Local.authority"])
+    exitdata.groupby(["Sector", "year", "leave_join", "Local.authority", "imd_decile"])
     .agg(childrens_homes=("childrens_homes", "sum"), Places=("Places", "sum"))
     .reset_index()
 )
 
 all = (
-    exitdata.groupby(["Sector", "year", "leave_join"])
+    exitdata.groupby(["Sector", "year", "leave_join", "imd_decile"])
     .agg(childrens_homes=("childrens_homes", "sum"), Places=("Places", "sum"))
     .reset_index()
 )
@@ -45,7 +44,7 @@ exitdata = pd.concat([exitdata, all])
 
 exitdata = pd.melt(
     exitdata,
-    id_vars=["Sector", "Local.authority", "year", "leave_join"],
+    id_vars=["Sector", "Local.authority", "year", "leave_join", "imd_decile"],
     value_vars=["childrens_homes", "Places"],
     var_name="Homes_or_places",
     value_name="value",
