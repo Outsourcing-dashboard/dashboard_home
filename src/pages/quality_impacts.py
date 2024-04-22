@@ -156,15 +156,6 @@ def register_callbacks(app, dataframes: DataContainer):
                         ],
                         value="Entries",
                     ),
-                    html.H3("Select a Local Authority"),
-                    dcc.Dropdown(
-                        id="exit-local-authority-dropdown",
-                        options=[
-                            {"label": la, "value": la}
-                            for la in exitdata["Local.authority"].unique()
-                        ],
-                        value="All",
-                    ),
                     html.H3("Select Number of Homes or Places"),
                     dcc.Dropdown(
                         id="exit-homes-or-places-dropdown",
@@ -174,7 +165,7 @@ def register_callbacks(app, dataframes: DataContainer):
                         ],
                         value=exitdata["Homes_or_places"].unique()[0],
                     ),
-                    dcc.Graph(id="exits_entries_plot"),
+                    dcc.Graph(id="exits_entries_plot_dep"),
                 ]
             )
 
@@ -419,3 +410,40 @@ def register_callbacks(app, dataframes: DataContainer):
         )
 
         return placement_plot
+    
+    @app.callback(
+        Output("exits_entries_plot_dep", "figure"),
+        Input("exit_entry_drop", "value"),
+        Input("exit-homes-or-places-dropdown", "value"),
+    )
+    def update_exits_plot(
+        selected_exits_entries, selected_homes_or_places
+    ):
+        filtered_exits = exitdata[
+            (exitdata["leave_join"] == selected_exits_entries)
+            & (exitdata["Homes_or_places"] == selected_homes_or_places)
+        ]
+
+        custom_colors = {
+            "For-profit": "#1f77b4",
+            "Local Authority": "#ff7f0e",
+            "Third Sector": "#2ca02c",
+        }
+
+        fig = px.bar(
+            filtered_exits,
+            x="imd_decile",
+            y="value",
+            color="Sector",
+            barmode="group",
+            color_discrete_map=custom_colors,
+            category_orders={"imd_decile": filtered_exits["imd_decile"].sort_values().unique()},
+        )
+
+        fig.update_layout(
+            xaxis_title="Deprivate Decile",
+            yaxis_title="Number",
+            title=f'Childrens home {selected_exits_entries}',
+        )
+
+        return fig

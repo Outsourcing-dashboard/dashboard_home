@@ -229,7 +229,7 @@ def register_callbacks(app):
                                 [
                                     html.Img(
                                         src="https://github.com/BenGoodair/Outsourcing_Impact_Dashboard/blob/main/Images/anders_bach-mortensen.jpg?raw=true",
-                                        style={"width": "100px", "height": "100px"},
+                                        style={"width": "50px", "height": "50px"},
                                     ),
                                     html.Div(
                                         [
