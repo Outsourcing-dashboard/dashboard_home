@@ -6,7 +6,7 @@ def render_page():
     return html.Div(
         [
             html.H2(
-                "The Outsourcing Impacts Tracker Dashboard for Children's Social Care",
+                "The Outsourcing Impacts Tracker for Children's Social Care",
                 className="display-7",
             ),
             html.Hr(),

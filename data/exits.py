@@ -66,7 +66,7 @@ exitdata["value"] = pd.to_numeric(exitdata["value"], errors="coerce")
 
 # Grouping by specified columns and calculating net change
 grouped = (
-    exitdata.groupby(["year", "Local.authority", "Homes_or_places", "Sector"])
+    exitdata.groupby(["year", "Local.authority", "Homes_or_places", "Sector", "imd_decile"])
     .apply(
         lambda x: x.loc[x["leave_join"] == "Entries", "value"].sum()
         - x.loc[x["leave_join"] == "Exits", "value"].sum()

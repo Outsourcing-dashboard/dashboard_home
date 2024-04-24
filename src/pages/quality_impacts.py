@@ -163,7 +163,7 @@ def register_callbacks(app, dataframes: DataContainer):
                             {"label": hop, "value": hop}
                             for hop in exitdata["Homes_or_places"].unique()
                         ],
-                        value=exitdata["Homes_or_places"].unique()[0],
+                        value=exitdata["Homes_or_places"].unique()[1],
                     ),
                     dcc.Graph(id="exits_entries_plot_dep"),
                 ]
@@ -422,6 +422,7 @@ def register_callbacks(app, dataframes: DataContainer):
         filtered_exits = exitdata[
             (exitdata["leave_join"] == selected_exits_entries)
             & (exitdata["Homes_or_places"] == selected_homes_or_places)
+            & (exitdata['Local.authority'] =="All")
         ]
 
         custom_colors = {
