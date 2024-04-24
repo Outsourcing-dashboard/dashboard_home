@@ -10,6 +10,7 @@ class DataContainer:
     la_df: pd.DataFrame
     nobs_final: pd.DataFrame
     exitdata: pd.DataFrame
+    exitdata_imd: pd.DataFrame
     merged2: gpd.GeoDataFrame
     active_chomes: pd.DataFrame
     outcomes_df: pd.DataFrame
@@ -26,6 +27,7 @@ class DataContainer:
         la_df_path = os.path.join(processed_path, "la.csv")
         nobs_final_path = os.path.join(processed_path, "nobs.csv")
         exitdata_path = os.path.join(processed_path, "exits.csv")
+        exitdata_imd_path = os.path.join(processed_path, "exits_imd.csv")
         merged2_path = os.path.join(processed_path, "merged.geojson")
         active_chomes_path = os.path.join(processed_path, "active_chomes.csv")
         outcomes_df_path = os.path.join(processed_path, "outcomes.csv")
@@ -36,6 +38,7 @@ class DataContainer:
         la_df = pd.read_csv(la_df_path)
         nobs_final = pd.read_csv(nobs_final_path)
         exitdata = pd.read_csv(exitdata_path)
+        exitdata_imd = pd.read_csv(exitdata_imd_path)
         active_chomes = pd.read_csv(active_chomes_path)
         outcomes_df = pd.read_csv(outcomes_df_path)
         placements_df = pd.read_csv(placements_df_path)
@@ -48,6 +51,7 @@ class DataContainer:
             la_df,
             nobs_final,
             exitdata,
+            exitdata_imd,
             merged2,
             active_chomes,
             outcomes_df,
@@ -62,6 +66,7 @@ class DataContainer:
                 ("la_df", pd.DataFrame),
                 ("nobs_final", pd.DataFrame),
                 ("exitdata", pd.DataFrame),
+                ("exitdata_imd", pd.DataFrame),
                 ("merged2", gpd.GeoDataFrame),
                 ("active_chomes", pd.DataFrame),
                 ("outcomes_df", pd.DataFrame),
@@ -74,6 +79,7 @@ class DataContainer:
             self.la_df,
             self.nobs_final,
             self.exitdata,
+            self.exitdata_imd,
             self.merged2,
             self.active_chomes,
             self.outcomes_df,

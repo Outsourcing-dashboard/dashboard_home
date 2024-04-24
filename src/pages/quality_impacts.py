@@ -48,7 +48,7 @@ def register_callbacks(app, dataframes: DataContainer):
     active_chomes = dataframes.active_chomes
     outcomes_df = dataframes.outcomes_df
     placements_df = dataframes.placements_df
-    exitdata = dataframes.exitdata
+    exitdata_imd = dataframes.exitdata_imd
 
     variable_options = []
     variable_options2 = []
@@ -152,18 +152,18 @@ def register_callbacks(app, dataframes: DataContainer):
                         id="exit_entry_drop",
                         options=[
                             {"label": la, "value": la}
-                            for la in exitdata["leave_join"].unique()
+                            for la in exitdata_imd["leave_join"].unique()
                         ],
-                        value="Entries",
+                        value="Net change",
                     ),
                     html.H3("Select Number of Homes or Places"),
                     dcc.Dropdown(
                         id="exit-homes-or-places-dropdown",
                         options=[
                             {"label": hop, "value": hop}
-                            for hop in exitdata["Homes_or_places"].unique()
+                            for hop in exitdata_imd["Homes_or_places"].unique()
                         ],
-                        value=exitdata["Homes_or_places"].unique()[1],
+                        value=exitdata_imd["Homes_or_places"].unique()[0],
                     ),
                     dcc.Graph(id="exits_entries_plot_dep"),
                 ]
@@ -419,10 +419,10 @@ def register_callbacks(app, dataframes: DataContainer):
     def update_exits_plot(
         selected_exits_entries, selected_homes_or_places
     ):
-        filtered_exits = exitdata[
-            (exitdata["leave_join"] == selected_exits_entries)
-            & (exitdata["Homes_or_places"] == selected_homes_or_places)
-            & (exitdata['Local.authority'] =="All")
+        filtered_exits = exitdata_imd[
+            (exitdata_imd["leave_join"] == selected_exits_entries)
+            & (exitdata_imd["Homes_or_places"] == selected_homes_or_places)
+            & (exitdata_imd['Local.authority'] =="All")
         ]
 
         custom_colors = {
