@@ -18,6 +18,7 @@ dataframes_tuple = data_container.get_dataframes_as_namedtuple()
     la_df,
     nobs_final,
     exitdata,
+    exitdata_imd,
     merged2,
     active_chomes,
     outcomes_df,
