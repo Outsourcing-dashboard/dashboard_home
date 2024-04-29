@@ -258,7 +258,8 @@ placements_df = la_df[
     | (la_df["subcategory"] == "LA of placement")
     | (la_df["subcategory"] == "Distance between home and placement")
     | (la_df["subcategory"] == "Mid-year moves")
-    | (la_df["subcategory"] == "placement stability")  # |
+    | (la_df["subcategory"] == "placement stability")
+    | (la_df["category"] == "placement stability")  # |
     # (la_df['subcategory'] == 'Placed inside the local authority boundary')
 ]
 

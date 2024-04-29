@@ -73,6 +73,17 @@ def register_callbacks(app, dataframes: DataContainer):
                         value="Overall.experiences.and.progress.of.children.and.young.people",
                         placeholder="Select an inspection domain",
                     ),
+                    html.H6("Select a Local Authority:"),
+                    html.Hr(),
+                    dcc.Dropdown(
+                        id="la-dropdown-ofsted",
+                        options=[
+                            {"label": geog_n, "value": geog_n}
+                            for geog_n in active_chomes["Local.Authority"].unique()
+                        ],
+                        value="All",
+                        placeholder="Select a Local Authority",
+                    ),
                     html.Hr(),
                     dcc.Graph(id="ofsted-plot", style={"height": "800px"}),
                 ]
@@ -232,11 +243,14 @@ def register_callbacks(app, dataframes: DataContainer):
         )
 
         return outcome_plot
+    
 
-    @app.callback(Output("ofsted-plot", "figure"), Input("domain-dropdown", "value"))
-    def update_ofsted_plot(selected_domain):
+
+    @app.callback(Output("ofsted-plot", "figure"), Input("domain-dropdown", "value"), Input("la-dropdown-ofsted", "value"))
+    def update_ofsted_plot(selected_domain, selected_LA):
         filtered_active_chomes = active_chomes[
-            active_chomes["Domain"] == selected_domain
+            (active_chomes["Domain"] == selected_domain)&
+            (active_chomes["Local.authority"] == selected_LA)
         ]
 
         # Create a unique circle identifier for each 'Overall.experiences'
