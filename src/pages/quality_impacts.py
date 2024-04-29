@@ -79,7 +79,7 @@ def register_callbacks(app, dataframes: DataContainer):
                         id="la-dropdown-ofsted",
                         options=[
                             {"label": geog_n, "value": geog_n}
-                            for geog_n in active_chomes["Local.Authority"].unique()
+                            for geog_n in active_chomes["Local.authority"].unique()
                         ],
                         value="All",
                         placeholder="Select a Local Authority",
