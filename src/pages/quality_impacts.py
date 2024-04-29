@@ -73,6 +73,7 @@ def register_callbacks(app, dataframes: DataContainer):
                         value="Overall.experiences.and.progress.of.children.and.young.people",
                         placeholder="Select an inspection domain",
                     ),
+                    html.Hr(),
                     html.H6("Select a Local Authority:"),
                     html.Hr(),
                     dcc.Dropdown(

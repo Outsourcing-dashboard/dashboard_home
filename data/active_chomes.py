@@ -7,6 +7,9 @@ active_chomes = pd.read_csv(
     encoding="ISO-8859-1",
 )
 
+
+active_chomes = active_chomes.sort_values(by="Local.authority")
+
 active_chomes.to_csv(
     csv_path("active_chomes"), index=False, header=True, encoding="ISO-8859-1"
 )
