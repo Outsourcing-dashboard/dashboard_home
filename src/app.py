@@ -103,22 +103,9 @@ sidebar = html.Div(
 content = html.Div(id="page-content", style=CONTENT_STYLE)
 
 
-watermark = html.Div(
-    "Under-development; Not for dissemination",
-    style={
-        "position": "fixed",
-        "bottom": "50%",  # Adjust the vertical position
-        "right": "50%",   # Adjust the horizontal position
-        "transform": "translate(50%, 50%) rotate(-45deg)",  # Rotate and position
-        "color": "rgba(255, 0, 0, 0.4)",
-        "fontSize": "70px",  # Increase the font size for better visibility
-        "zIndex": "9999",
-    }
-)
 
 
-# Incorporate the watermark into your layout
-app.layout = html.Div([dcc.Location(id="url"), sidebar, content, watermark])
+app.layout = html.Div([dcc.Location(id="url"), sidebar, content])
 
 
 @app.callback(Output("page-content", "children"), [Input("url", "pathname")])
